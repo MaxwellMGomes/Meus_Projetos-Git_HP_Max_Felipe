@@ -6,7 +6,7 @@
     <title>Gera dados Conta Azul</title>
 </head>
 <body>
-    
+    //
      <?php
 
         if (isset($_GET['code'])){
