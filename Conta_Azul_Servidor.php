@@ -181,35 +181,7 @@
 
    /// =====================================================================================
 
-        echo "<h2>=========== Simulando Servidor Conta Azul ====================</h2>";
-        echo  "<h3>=== Gerando Codigo === </h3>";
-        // Verifica se o botão com name="botao_acao" foi submetido
-        if(isset($_POST['Gera_codigo'])) {
-            gera_codigo();
-        }
        
-        echo '<form method="post">';
-        echo '<input type="submit" name="Gera_codigo" value="Gerar Codigo">';
-        echo '</form><hr><br/>';
-
-
-     
-        echo  "<h3>=== Enviando Codigo para gerar Token === </h3>";
-        $codigo = empty($_GET["code"])?"":$_GET["code"];
-        echo "<form method='get' action='Conta_Azul_Servidor.php'>";
-        echo "Codigo Acesso Dia: <input type='text' name='code' value=$codigo> ";
-        echo "<input type='submit' name='botao_codigo' value='Gera Token'></br>";
-        echo "Período Coleta: <input type='date' name='data_ini_base' value=$data_ini_base> a " ;
-        echo "<input type='date' name='data_fim_base' value=$data_fim_base></br>";
-        echo "Período Lançamento: <input type='date' name='data_ini_lanca' value=$data_ini_lanca> a ";
-        echo "<input type='date' name='data_fim_lanca' value=$data_fim_lanca></br>";
-        echo "Caminho: <input type='text' name='caminho' value=$caminho></br>";
-        echo "Cliente ID: <input type='text' name='client_id' value=$client_id disabled> </br>";
-        echo "Cliente Secret: <input type='text' name='client_secret' value=$client_secret disabled></br>";
-        echo "Cliente Base64: <input type='text' name='client_Base64' value=$client_Base64 disabled></br>";
-
-        echo "</form>";
-
         
 
         if (!empty($_GET["code"])) {

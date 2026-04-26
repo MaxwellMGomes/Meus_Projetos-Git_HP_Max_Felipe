@@ -6,20 +6,30 @@
     <title>Simula Servidor Conta Azul</title>
 </head>
 <body>
-   <h1>Redirecionando Conta Azul</h1>
-    <!-- O conteúdo do PHP será inserido aqui -->
-    <div id="conteudo-php">Carregando...</div>
+    <h2>=========== Simulando Servidor Conta Azul ====================</h2>
+        <h3>=== Gerando Codigo === </h3>
+        // Verifica se o botão com name="botao_acao" foi submetido
+       
+        <form method="post">
+        <input type="submit" name="Gera_codigo" value="Gerar Codigo">
+        </form><hr><br/>'
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Chama o arquivo PHP assim que a página carregar
-            fetch('Conta_Azul_Servidor.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('conteudo-php').innerHTML = data;
-                })
-                .catch(error => console.error('Erro:', error));
-        });
-    </script>
+
+     
+        <h3>=== Enviando Codigo para gerar Token === </h3>"
+        <form method='get' action='Conta_Azul_Servidor.php'>
+        Codigo Acesso Dia: <input type='text' name='code' value=$codigo> 
+        <input type='submit' name='botao_codigo' value='Gera Token'></br>
+        Período Coleta: <input type='date' name='data_ini_base' value=$data_ini_base> 
+        <input type='date' name='data_fim_base' value=$data_fim_base></br>
+        Período Lançamento: <input type='date' name='data_ini_lanca' value=$data_ini_lanca> 
+        <input type='date' name='data_fim_lanca' value=$data_fim_lanca></br>
+        Caminho: <input type='text' name='caminho' value=$caminho></br>
+        Cliente ID: <input type='text' name='client_id' value=$client_id disabled> </br>
+        Cliente Secret: <input type='text' name='client_secret' value=$client_secret disabled></br>
+        Cliente Base64: <input type='text' name='client_Base64' value=$client_Base64 disabled></br>
+
+        </form>
+
 </body>
 </html>
