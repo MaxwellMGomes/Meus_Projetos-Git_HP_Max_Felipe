@@ -9,16 +9,16 @@ const code = urlAtual.searchParams.get("code")
 if (code) {
         codigo_dia.value = code
     } else {        
-        window.location.href = 'http://127.0.0.1:5500/Curso_JS/Modelos/Modelo.html' 
+        //window.location.href = 'http://127.0.0.1:5500/Curso_JS/Modelos/Modelo.html' 
 
-        //gera_codigo()
+        gera_codigo()
     }
 
 
 
 btGeraCod.addEventListener('click', (event) => {
     
-    window.location.href = 'http://127.0.0.1:5500/Conta_Azul/Conta_Azul.html' 
+    window.location.href = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' 
     /*event.preventDefault()
     if (code) {
         window.alert(code)
@@ -50,7 +50,7 @@ function gera_codigo(){
 
     const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=code&";
     const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov'; //SEU_CLIENT_ID
-    const redirect_uri = 'https://www.google.com/'; // 'SUA_URL_DE_REDIRECT'; // A mesma cadastrada no App
+    const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/'; // 'SUA_URL_DE_REDIRECT'; // A mesma cadastrada no App
     const scope = 'openid+profile+aws.cognito.signin.user.admin';
 
     const params = { 
