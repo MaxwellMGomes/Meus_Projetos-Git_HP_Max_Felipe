@@ -7,6 +7,27 @@ Usuário : ea7947f4-c664-4228-9f5d-44808f009ab8@devportal.com
 Senha : Cea7947f4-c664-4228-9f5d-44808f009ab8
 
 
+Acesso API via JS:
+https://www.google.com/search?q=API+conta+azul+requisi%C3%A7%C3%A3o+do+codigo+de+acesso+via+JavaScript&oq=API+conta+azul+requisi%C3%A7%C3%A3o+do+codigo+de+acesso+via+JavaScript&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIICAMQABgHGB4yCAgEEAAYBxgeMgYIBRAAGB4yBggGEAAYHjIGCAcQABgeMggICBAAGAUYHjIICAkQABgFGB7SAQkyMTIyM2owajeoAgiwAgHxBUrnQFUbv-H7&sourceid=chrome&ie=UTF-8
+
+--> Aula AJAX Felipe Aguiar --> https://www.youtube.com/watch?v=bpx0r_PLLBo
+---> Aula Fech Gustavo Caetano --> https://www.youtube.com/watch?v=NJzNc8-KqQI
+---> Fech - Matheus Battisti ---> https://www.youtube.com/watch?v=qIGYM4S8x50&t=1727s
+
+====> Exemplodo event.preventDefault() com fetchApi
+// Seleciona o formulário
+const form = document.querySelector('form');
+
+form.addEventListener('submit', async function(event) {
+  // Impede o envio padrão do formulário (recarregar a página)
+  event.preventDefault();
+  const result = await fetchApi(charactereId.value)
+  
+  // Realiza validação ou envia os dados via fetch/ajax
+  console.log('Formulário não foi enviado, mas os dados podem ser processados.');
+});
+=================================================================
+
 Correto: 
 https://auth.contaazul.com/oauth2/authorize?response_type=code&client_id=3s7hmj1jf2fhesvdvfk7d3dpov&redirect_uri=https://www.google.com/&state=ESTADO&scope=openid+profile+aws.cognito.signin.user.admin
 
