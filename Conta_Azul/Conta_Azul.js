@@ -68,7 +68,6 @@ btGeraToken.addEventListener('click', async(event) => {
     const token_todos = await gera_token()
     cb_token_acesso.value = token_todos.access_token
     cb_token_renova.value = token_todos.refresh_token
-    console.log(token_todos)
 
 })
 
@@ -104,8 +103,6 @@ async function gera_token() {
     });
 
     const data = await response.json();
-    console.log(data); // Contém access_token e refresh_token
-    console.log(data.access_token)
     return data
 }
 
