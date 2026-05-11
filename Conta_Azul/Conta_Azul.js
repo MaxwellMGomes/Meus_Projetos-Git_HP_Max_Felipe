@@ -16,7 +16,7 @@ const cb_client_Base64 = window.document.getElementById('client_Base64')
 //Definindo valor das variaveis
 const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
 const client_secret = 'css6mpnvip3nvqgvnt8vcmdep5mcorqjgk48850e5riu5087vcm'
-const client_Base64 = btoa(`${clientId}:${clientSecret}`)
+const client_Base64 = btoa(`${client_id}:${client_secret}`)
 
 
 const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' // mesma do ContaAzu
