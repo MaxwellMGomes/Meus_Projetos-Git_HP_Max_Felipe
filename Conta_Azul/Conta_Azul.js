@@ -1,6 +1,7 @@
 //const { URLSearchParams } = require('url')
 const btGeraCod = document.getElementById('bt_gera_codigo')
-const url = window.document.getElementById('url')
+const btGeraToken = document.getElementById('bt_gera_token')
+const token = window.document.getElementById('token')
 
 //combobox imput
 const cb_code = document.getElementById('code')
@@ -57,6 +58,12 @@ btGeraCod.addEventListener('click', (event) => {
     //url.innerHTML = `Veio da página: ${pagAnt}`
     codigo_dia.value = code
    */
+
+})
+
+btGeraToken.addEventListener('click', (event) => {
+    token_todos = gera_Token()
+    token.innerHTML(token_todos)
 
 })
 
