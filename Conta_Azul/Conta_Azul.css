@@ -49,5 +49,6 @@ footer{
     word-break: break-all;
     min-width: 100px;
     max-width: 300px;
-    
+    line-break: auto;
+    overflow-wrap: anywhere;
 }
