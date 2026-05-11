@@ -53,6 +53,10 @@ function pag_origem(){
 
 function gera_codigo(){
     //const fetch = require('node-fetch');
+    const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=code&";
+    const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
+    const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' // mesma do ContaAzu
+
     const params = { 
         'client_id' : client_id,
         'redirect_uri' : redirect_uri,
