@@ -1,7 +1,6 @@
 //const { URLSearchParams } = require('url')
 const btGeraCod = document.getElementById('bt_gera_codigo')
 const btGeraToken = document.getElementById('bt_gera_token')
-const token = window.document.getElementById('token')
 
 //combobox imput
 const cb_code = document.getElementById('code')
@@ -13,6 +12,9 @@ const cb_caminho = window.document.getElementById('caminho')
 const cb_client_id = window.document.getElementById('client_id')
 const cb_client_secret = window.document.getElementById('client_secret')
 const cb_client_Base64 = window.document.getElementById('client_Base64')
+const cb_token_acesso = window.document.getElementById('token_acesso')
+const cb_token_renova = window.document.getElementById('token_renova')
+
 
 //Definindo valor das variaveis
 const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
@@ -64,7 +66,8 @@ btGeraCod.addEventListener('click', (event) => {
 btGeraToken.addEventListener('click', (event) => {
     event.preventDefault()
     token_todos = gera_Token()
-    token.innerHTML(token_todos)
+    cb_token_acesso = token_todos.access_token
+    cb_token_renova = token_todos.refresh_token
 
 })
 
