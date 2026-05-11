@@ -5,6 +5,12 @@ const url = window.document.getElementById('url')
 const caminho = window.document.getElementById('caminho')
 const urlAtual = new URL(window.location.href)
 const code = urlAtual.searchParams.get("code")
+const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=code&";
+const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
+const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' // mesma do ContaAzu
+const fetch = require('node-fetch')
+const btoa = require('btoa') // Para gerar a base64
+
 
 if (code) {
         codigo_dia.value = code
@@ -47,18 +53,11 @@ function pag_origem(){
 
 function gera_codigo(){
     //const fetch = require('node-fetch');
-
-    const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=code&";
-    const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov'; //SEU_CLIENT_ID
-    const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/'; // 'SUA_URL_DE_REDIRECT'; // A mesma cadastrada no App
-    const scope = 'openid+profile+aws.cognito.signin.user.admin';
-
     const params = { 
         'client_id' : client_id,
         'redirect_uri' : redirect_uri,
         'state' : 'ESTADO',
         'scope' : 'openid+profile+aws.cognito.signin.user.admin'
-
     };
     const queryString = new URLSearchParams(params).toString();
     const authUrl = decodeURIComponent(url_codigo+queryString);
@@ -66,98 +65,37 @@ function gera_codigo(){
     window.location.href = authUrl
 }
     
-    /* ===> Tentando criar elemento via JS e utiliza-lo no HTMLinner
-     event.preventDefault()
-     const div2 = document.createElement('div')
-     div2.setAttribute('id','res')
-     div2.innerHTML = authUrl
-     const url = window.document.getElementById('url')
-    url.innerHTML = authUrl
+  
+// Exemplo usando node-fetch para fazer a requisição
+/// Javascript
+async function getContaAzulToken() { 
+    const clientId = client_id
+    const clientSecret = 'SEU_CLIENT_SECRET'
+    const code = 'CODIGO_DE_AUTORIZACAO'; // Obtido via URL de redirecionamento
 
-    window.alert(authUrl)
-    console.log(authUrl);
-    */
-    
+    // 1. Codificar Client ID e Secret
+    const auth = btoa(`${clientId}:${clientSecret}`);
 
+    // 2. Fazer requisição POST para gerar o token
+    const response = await fetch('https://auth.contaazul.com/oauth2/token', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            'code': code,
+            'grant_type': 'authorization_code',
+            'redirect_uri': 'SUA_REDIRECT_URI'
+        })
+    });
 
-
-    /*
-    $url = $url_codigo . rawurldecode(http_build_query([
-        '&client_id' => $client_id,
-        'redirect_uri' => $redirect_uri,
-        'state' => 'ESTADO', // String aleatória
-        'scope' => 'openid+profile+aws.cognito.signin.user.admin',
-        ]));
-    
-    header("Location: $url");
-    exit();
-    */
-
-
-function gera_codigo_js_fetch(){
-        // Exemplo Conceitual em JavaScript (Node.js/Backend ou Frontend seguro)
-        const fetch = require('node-fetch');
-
-        // 1. Configurações da sua App
-        const clientId = 'SEU_CLIENT_ID';
-        const redirectUri = 'SUA_REDIRECT_URI'; // A mesma configurada no Portal
-
-        // 2. Passo 1: Redirecionar usuário para a Conta Azul (fazer no navegador)
-        const authUrl = `https://contaazul.com{redirectUri}&client_id=${clientId}&scope=sales,products&response_type=code`;
-        // window.location.href = authUrl; // Redireciona o usuário
-
-        // 3. Passo 2: Receber o código da URL (após redirect)
-        // A URL de retorno será: sua_redirect_uri?code=CODIGO_RECEBIDO
-        const urlParams = new URLSearchParams(window.location.search);
-        const authorizationCode = urlParams.get('code');
-}
-
-function gera_token_js_axios(){
-    const axios = require('axios');
-    const qs = require('querystring');
-
-    // 1. Configurações da Aplicação
-    const clientId = 'SEU_CLIENT_ID';
-    const clientSecret = 'SEU_CLIENT_SECRET';
-    const redirectUri = 'SUA_REDIRECT_URI';
-
-    // 2. Base64 do Basic Auth (clientId:clientSecret)
-    const authHeader = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
-
-    // 3. Função para trocar o Código de Autorização pelo Token
-    async function getAccessToken(authorizationCode) {
-        try {
-            const response = await axios.post('https://contaazul.com', 
-                qs.stringify({
-                    grant_type: 'authorization_code',
-                    code: authorizationCode,
-                    redirect_uri: redirectUri
-                }), 
-                {
-                    headers: {
-                        'Authorization': `Basic ${authHeader}`,
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                }
-            );
-            
-            console.log('Access Token:', response.data.access_token);
-            console.log('Refresh Token:', response.data.refresh_token);
-            return response.data;
-        } catch (error) {
-            console.error('Erro na autenticação:', error.response.data);
-        }
-    }
-
-// O authorizationCode é obtido na URL após o usuário autorizar o app
-// getAccessToken('CODIGO_RECEBIDO_NA_URL');
-
+    const data = await response.json();
+    console.log(data); // Contém access_token e refresh_token
 }
 
 
-
-
-function gera_token(){
+function gera_token(){  //PHP
     httpCode , $response, $data, $client_id, $client_secret, $client_Base64, $token_acesso, $token_renova;
     // 1. Dados da sua aplicação (obtidos no portal de desenvolvedor Conta Azul)
     $client_id = '3s7hmj1jf2fhesvdvfk7d3dpov'; //SEU_CLIENT_ID
@@ -212,7 +150,6 @@ function gera_token(){
     } 
 
     // 8. Por minha conta Grava csv
-
 
 
 
