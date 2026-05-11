@@ -111,39 +111,27 @@ async function gera_token() {
 
 /// ===========   Abaixo as reservas técnicas   ========================================================
 
-function pag_origem(){
-        const pagAnt = document.referrer
-        if (pagAnt){
-            const url = window.document.getElementById('url')
-            url.innerHTML = `Veio da página: ${pagAnt}`
-            window.alert(`Veio da página: ${pagAnt}`)
-        } else {
-                gera_codigo()
-            //window.alert(`Acesso direto sem pagina anterior`)
-        }
-}
+/// ===> Ler e Gravar aquivo csv no javascript
+const fs = require('fs');
+
+// Gravar CSV
+const csvContent = "nome,idade\nJoão,30\nMaria,25";
+fs.writeFileSync('dados.csv', csvContent);
+
+// Ler CSV
+const content = fs.readFileSync('dados.csv', 'utf8');
+console.log(content);
+
+///====================================
 
 
-function grava_csv($arq,$dados){
-    /* 
-    $dados = [
-    ['Nome', 'Idade', 'Cidade'],
-    ['João', '30', 'São Paulo'],
-    ['Maria', '25', 'Rio de Janeiro']
-    ];
-    */
+function grava_csv_php($arq,$dados){
     $arquivo = fopen($arq, 'w');
 
-    //foreach ($dados as $linha) {
-        // Grava o array no arquivo CSV
-    //    fputcsv($arquivo, $linha, ";"); // Delimitador definido como ';'
-   // }
-
     fclose($arquivo);
-    //echo '----> Arquivo '.$arquivo + ' gerado com sucesso !!!!';
 }
 
-function ler_csv(){
+function ler_csv_php(){
     $arquivo = fopen('saida.csv', 'r');
     if ($arquivo !== FALSE) {
         // Loop para ler linha por linha
@@ -155,6 +143,17 @@ function ler_csv(){
     }
 }
 
+function pag_origem(){
+        const pagAnt = document.referrer
+        if (pagAnt){
+            const url = window.document.getElementById('url')
+            url.innerHTML = `Veio da página: ${pagAnt}`
+            window.alert(`Veio da página: ${pagAnt}`)
+        } else {
+                gera_codigo()
+            //window.alert(`Acesso direto sem pagina anterior`)
+        }
+}
 
 
 function gera_token_php(){  //PHP
