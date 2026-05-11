@@ -22,10 +22,16 @@ p{
     margin: 8px;
 }
 .alinha{
-    display: flex;
+    padding-top: 5px;
     text-align: end;
     width: 100px;
+
+}
+.vlinha{
+    display: flex;
     align-items: flex-start;
+    gap: 10px;
+
 }
 .botao{
     background-color:rgb(84, 126, 202); /* Cor de fundo */
