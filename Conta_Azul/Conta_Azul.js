@@ -1,6 +1,8 @@
 //const { URLSearchParams } = require('url')
 const btGeraCod = document.getElementById('bt_gera_codigo')
 const btGeraToken = document.getElementById('bt_gera_token')
+//div
+const dv_token = window.document.getElementById('token')
 
 //combobox imput
 const cb_code = document.getElementById('code')
@@ -68,6 +70,7 @@ btGeraToken.addEventListener('click', async(event) => {
     const token_todos = await gera_token()
     cb_token_acesso.value = token_todos.access_token
     cb_token_renova.value = token_todos.refresh_token
+    dv_token.style.display = "block"
 
 })
 

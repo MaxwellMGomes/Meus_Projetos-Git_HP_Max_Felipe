@@ -21,6 +21,15 @@ p{
     padding: 0px;
     margin: 8px;
 }
+footer{
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-size: small;
+    padding: 10px;
+
+}
+
 .alinha{
     display: inline;
     padding-top: 5px;
@@ -44,19 +53,14 @@ p{
     font-size: 13px;
     transition: background-color 0.3s; /* Transição suave */
 }
-footer{
-    color: white;
-    text-align: center;
-    font-style: italic;
-    font-size: small;
-    padding: 10px;
-
-}
 .cboxg{
     field-sizing: content;
     word-break: break-all;
     min-width: 100px;
-    max-width: 500px;
+    max-width: 700px;
     line-break: auto;
     overflow-wrap: anywhere;
+}
+#token{
+    display: none;
 }
