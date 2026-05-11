@@ -22,9 +22,10 @@ p{
     margin: 8px;
 }
 .alinha{
-    display: inline-block;
+    display: flex;
     text-align: end;
     width: 100px;
+    align-items: flex-start;
 }
 .botao{
     background-color:rgb(84, 126, 202); /* Cor de fundo */
