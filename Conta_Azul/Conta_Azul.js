@@ -1,13 +1,37 @@
 //const { URLSearchParams } = require('url')
 const btGeraCod = document.getElementById('bt_gera_codigo')
-const codigo_dia = document.getElementById('code')
 const url = window.document.getElementById('url')
-const caminho = window.document.getElementById('caminho')
+
+//combobox imput
+const cb_code = document.getElementById('code')
+const cb_data_ini_base = window.document.getElementById('data_ini_base')
+const cb_data_fim_base = window.document.getElementById('data_fim_base')
+const cb_data_ini_lanca = window.document.getElementById('data_ini_lanca')
+const cb_data_fim_lanca = window.document.getElementById('data_fim_lanca')
+const cb_data_ini_base = window.document.getElementById('')
+const cb_caminho = window.document.getElementById('caminho')
+const cb_client_id = window.document.getElementById('client_id')
+const cb_client_secret = window.document.getElementById('client_secret')
+const cb_client_Base64 = window.document.getElementById('client_Base64')
+
+//Definindo valor das variaveis
+const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
+const client_secret = 'css6mpnvip3nvqgvnt8vcmdep5mcorqjgk48850e5riu5087vcm'
+const client_Base64 = btoa(`${clientId}:${clientSecret}`)
+
+
+const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' // mesma do ContaAzu
+
 const urlAtual = new URL(window.location.href)
 const code = urlAtual.searchParams.get("code")
 const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=code&";
-const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
-const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' // mesma do ContaAzu
+
+//Alterando valor das combox.
+cb_client_id.value = client_id
+cb_client_secret.value = client_secret
+cb_client_Base64.value = client_Base64
+
+
 //import fetch from 'node-fetch'
 //const fetch = require('node-fetch')
 
@@ -15,10 +39,9 @@ const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_F
 
 
 if (code) {
-        codigo_dia.value = code
+        cb_code.value = code
     } else {        
         //window.location.href = 'http://127.0.0.1:5500/Curso_JS/Modelos/Modelo.html' 
-
         gera_codigo()
     }
 
@@ -38,21 +61,6 @@ btGeraCod.addEventListener('click', (event) => {
 
 })
 
-
-
-function pag_origem(){
-        const pagAnt = document.referrer
-        if (pagAnt){
-            const url = window.document.getElementById('url')
-            url.innerHTML = `Veio da página: ${pagAnt}`
-            window.alert(`Veio da página: ${pagAnt}`)
-        } else {
-                gera_codigo()
-            //window.alert(`Acesso direto sem pagina anterior`)
-        }
-}
-
-
 function gera_codigo(){
     //const fetch = require('node-fetch');
     
@@ -67,35 +75,73 @@ function gera_codigo(){
     //const authUrl = decodeURIComponent("http://127.0.0.1:5500/Curso_JS/Modelos/Modelo.html");
     window.location.href = authUrl
 }
-    
-  
-// Exemplo usando node-fetch para fazer a requisição
-/// Javascript
-async function getContaAzulToken() { 
-    const clientId = client_id
-    const clientSecret = 'SEU_CLIENT_SECRET'
-    const code = 'CODIGO_DE_AUTORIZACAO'; // Obtido via URL de redirecionamento
 
-    // 1. Codificar Client ID e Secret
-    const auth = btoa(`${clientId}:${clientSecret}`);
-
+async function gera_Token() { 
     // 2. Fazer requisição POST para gerar o token
     const response = await fetch('https://auth.contaazul.com/oauth2/token', {
         method: 'POST',
         headers: {
-            'Authorization': `Basic ${auth}`,
+            'Authorization': `Basic ${client_Base64}`,
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: new URLSearchParams({
             'code': code,
             'grant_type': 'authorization_code',
-            'redirect_uri': 'SUA_REDIRECT_URI'
+            'redirect_uri': redirect_uri
         })
     });
 
     const data = await response.json();
     console.log(data); // Contém access_token e refresh_token
+    return data
 }
+
+/// ===========   Abaixo as reservas técnicas   ========================================================
+
+function pag_origem(){
+        const pagAnt = document.referrer
+        if (pagAnt){
+            const url = window.document.getElementById('url')
+            url.innerHTML = `Veio da página: ${pagAnt}`
+            window.alert(`Veio da página: ${pagAnt}`)
+        } else {
+                gera_codigo()
+            //window.alert(`Acesso direto sem pagina anterior`)
+        }
+}
+
+
+function grava_csv($arq,$dados){
+    /* 
+    $dados = [
+    ['Nome', 'Idade', 'Cidade'],
+    ['João', '30', 'São Paulo'],
+    ['Maria', '25', 'Rio de Janeiro']
+    ];
+    */
+    $arquivo = fopen($arq, 'w');
+
+    //foreach ($dados as $linha) {
+        // Grava o array no arquivo CSV
+    //    fputcsv($arquivo, $linha, ";"); // Delimitador definido como ';'
+   // }
+
+    fclose($arquivo);
+    //echo '----> Arquivo '.$arquivo + ' gerado com sucesso !!!!';
+}
+
+function ler_csv(){
+    $arquivo = fopen('saida.csv', 'r');
+    if ($arquivo !== FALSE) {
+        // Loop para ler linha por linha
+        while (($linha = fgetcsv($arquivo, 1000, ",")) !== FALSE) {
+            // $linha é um array com os elementos do CSV
+            print_r($linha);
+        }
+        fclose($arquivo);
+    }
+}
+
 
 
 function gera_token(){  //PHP
@@ -156,38 +202,6 @@ function gera_token(){  //PHP
 
 
 
-}
-
-
-function grava_csv($arq,$dados){
-    /* 
-    $dados = [
-    ['Nome', 'Idade', 'Cidade'],
-    ['João', '30', 'São Paulo'],
-    ['Maria', '25', 'Rio de Janeiro']
-    ];
-    */
-    $arquivo = fopen($arq, 'w');
-
-    //foreach ($dados as $linha) {
-        // Grava o array no arquivo CSV
-    //    fputcsv($arquivo, $linha, ";"); // Delimitador definido como ';'
-   // }
-
-    fclose($arquivo);
-    //echo '----> Arquivo '.$arquivo + ' gerado com sucesso !!!!';
-}
-
-function ler_csv(){
-    $arquivo = fopen('saida.csv', 'r');
-    if ($arquivo !== FALSE) {
-        // Loop para ler linha por linha
-        while (($linha = fgetcsv($arquivo, 1000, ",")) !== FALSE) {
-            // $linha é um array com os elementos do CSV
-            print_r($linha);
-        }
-        fclose($arquivo);
-    }
 }
 
 
