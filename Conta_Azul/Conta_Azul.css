@@ -45,5 +45,6 @@ footer{
 
 }
 .cboxg{
-    width: 300px; ;
+    field-sizing: content;
+    max-width: 500px;
 }
