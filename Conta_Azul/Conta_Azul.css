@@ -46,7 +46,8 @@ footer{
 }
 .cboxg{
     field-sizing: content;
-    overflow-wrap: break-all;
+    word-break: break-all;
     min-width: 100px;
     max-width: 300px;
+    
 }
