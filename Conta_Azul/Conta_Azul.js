@@ -62,6 +62,7 @@ btGeraCod.addEventListener('click', (event) => {
 })
 
 btGeraToken.addEventListener('click', (event) => {
+    event.preventDefault()
     token_todos = gera_Token()
     token.innerHTML(token_todos)
 
@@ -84,6 +85,7 @@ function gera_codigo(){
 
 async function gera_Token() { 
     // 2. Fazer requisição POST para gerar o token
+
     const response = await fetch('https://auth.contaazul.com/oauth2/token', {
         method: 'POST',
         headers: {
