@@ -157,7 +157,7 @@ function ler_csv(){
 
 
 
-function gera_token(){  //PHP
+function gera_token_php(){  //PHP
     httpCode , $response, $data, $client_id, $client_secret, $client_Base64, $token_acesso, $token_renova;
     // 1. Dados da sua aplicação (obtidos no portal de desenvolvedor Conta Azul)
     $client_id = '3s7hmj1jf2fhesvdvfk7d3dpov'; //SEU_CLIENT_ID
