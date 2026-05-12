@@ -1,4 +1,5 @@
 //const { URLSearchParams } = require('url')
+import fs from 'node:fs/promises'
 const btGeraCod = document.getElementById('bt_gera_codigo')
 const btGeraToken = document.getElementById('bt_gera_token')
 //div
@@ -109,18 +110,50 @@ async function gera_token() {
     return data
 }
 
-/// ===========   Abaixo as reservas técnicas   ========================================================
-
-/// ===> Ler e Gravar aquivo csv no javascript
-const fs = require('fs');
-
-// Gravar CSV
-const csvContent = "nome,idade\nJoão,30\nMaria,25";
-fs.writeFileSync('dados.csv', csvContent);
+/// ===> Manipular aquivo csv no javascript
 
 // Ler CSV
-const content = fs.readFileSync('dados.csv', 'utf8');
-console.log(content);
+async function lerArquivo() {
+  try {
+    const data = await fs.readFile('exemplo.txt', 'utf8');
+    console.log('Conteúdo do arquivo:', data);
+  } catch (err) {
+    console.error('Erro ao ler arquivo:', err);
+  }
+}
+
+
+// Gravar CSV
+
+async function criarArquivo() {
+  try {
+    const conteudo = 'Olá, este é um exemplo do módulo fs!';
+    await fs.writeFile('exemplo.txt', conteudo, 'utf8');
+    console.log('Arquivo criado com sucesso!');
+  } catch (err) {
+    console.error('Erro ao criar arquivo:', err);
+  }
+}
+
+/// ===========   Abaixo as reservas técnicas   ========================================================
+
+/// Fazer download de um aquivo no github
+const fs = require('fs');
+const https = require('https');
+
+// URL "Raw" do arquivo no GitHub
+const url = 'https://githubusercontent.com';
+const destino = './arquivo.txt';
+
+const file = fs.createWriteStream(destino);
+https.get(url, (response) => {
+  response.pipe(file);
+  file.on('finish', () => {
+    file.close();
+    console.log('Download concluído!');
+    // Agora pode usar fs.readFile para ler o arquivo local
+  });
+});
 
 ///====================================
 
