@@ -1,9 +1,3 @@
-// Importanto bibliotecas
-//import fs from 'node:fs/promises'
-//import fetch from 'node-fetch'
-//const fetch = require('node-fetch')
-const btoa = require('btoa') // Para gerar a base64
-const { URLSearchParams } = require('url')
 
 /// Lendo elementos do arquivo html
 const btGeraCod = document.getElementById('bt_gera_codigo')
@@ -124,6 +118,14 @@ async function criarArquivo() {
 }
 
 /// ===========   Abaixo as reservas técnicas   ========================================================
+
+// Importanto bibliotecas
+// Em tese todas já nativos do Node.js
+//import fs from 'node:fs/promises'
+//import fetch from 'node-fetch'
+//const fetch = require('node-fetch')
+//const btoa = require('btoa') // Para gerar a base64
+//const { URLSearchParams } = require('url')
 
 /// Fazer download de um aquivo no github
 const fs = require('fs');
