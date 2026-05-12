@@ -1,7 +1,7 @@
 // Importanto bibliotecas
 //import fs from 'node:fs/promises'
 //import fetch from 'node-fetch'
-const fetch = require('node-fetch')
+//const fetch = require('node-fetch')
 const btoa = require('btoa') // Para gerar a base64
 const { URLSearchParams } = require('url')
 
