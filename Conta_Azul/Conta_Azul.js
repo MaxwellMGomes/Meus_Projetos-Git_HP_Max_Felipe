@@ -1,11 +1,17 @@
-//const { URLSearchParams } = require('url')
+// Importanto bibliotecas
 import fs from 'node:fs/promises'
+import fetch from 'node-fetch'
+const fetch = require('node-fetch')
+const btoa = require('btoa') // Para gerar a base64
+const { URLSearchParams } = require('url')
+
+/// Lendo elementos do arquivo html
 const btGeraCod = document.getElementById('bt_gera_codigo')
 const btGeraToken = document.getElementById('bt_gera_token')
 //div
 const dv_token = window.document.getElementById('token')
 
-//combobox imput
+//Combobox input
 const cb_code = document.getElementById('code')
 const cb_data_ini_base = window.document.getElementById('data_ini_base')
 const cb_data_fim_base = window.document.getElementById('data_fim_base')
@@ -23,10 +29,7 @@ const cb_token_renova = window.document.getElementById('token_renova')
 const client_id = '3s7hmj1jf2fhesvdvfk7d3dpov' //SEU_CLIENT_ID
 const client_secret = 'css6mpnvip3nvqgvnt8vcmdep5mcorqjgk48850e5riu5087vcm'
 const client_Base64 = btoa(`${client_id}:${client_secret}`)
-
-
 const redirect_uri = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' // mesma do ContaAzu
-
 const urlAtual = new URL(window.location.href)
 const code = urlAtual.searchParams.get("code")
 const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=code&";
@@ -35,46 +38,31 @@ const url_codigo = "https://auth.contaazul.com/oauth2/authorize?response_type=co
 cb_client_id.value = client_id
 cb_client_secret.value = client_secret
 cb_client_Base64.value = client_Base64
+cb_caminho.value = 'C:\Users\Public\Conta_Azul'
 
-
-//import fetch from 'node-fetch'
-//const fetch = require('node-fetch')
-
-//const btoa = require('btoa') // Para gerar a base64
-
-
+/// Captura o código se já tiver nos parametros da URL ou direciona para login Conta_Azul
 if (code) {
         cb_code.value = code
     } else {        
-        //window.location.href = 'http://127.0.0.1:5500/Curso_JS/Modelos/Modelo.html' 
         gera_codigo()
     }
 
-
-
+///Ação dos botões quando acionados
+// Gera Código
 btGeraCod.addEventListener('click', (event) => {
-    
     window.location.href = 'https://maxwellmgomes.github.io/Meus_Projetos-Git_HP_Max_Felipe/' 
-    /*event.preventDefault()
-    if (code) {
-        window.alert(code)
-    }
-    
-    //url.innerHTML = `Veio da página: ${pagAnt}`
-    codigo_dia.value = code
-   */
-
 })
 
+// Gera Token
 btGeraToken.addEventListener('click', async(event) => {
     event.preventDefault()
     const token_todos = await gera_token()
     cb_token_acesso.value = token_todos.access_token
     cb_token_renova.value = token_todos.refresh_token
     dv_token.style.display = "block"
-
 })
 
+//// ==== Funções ========
 function gera_codigo(){
     //const fetch = require('node-fetch');
     
